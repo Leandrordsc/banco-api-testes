@@ -1,0 +1,196 @@
+{
+  "stats": {
+    "suites": 4,
+    "tests": 3,
+    "passes": 3,
+    "pending": 0,
+    "failures": 0,
+    "start": "2026-06-20T20:53:39.298Z",
+    "end": "2026-06-20T20:53:39.348Z",
+    "duration": 50,
+    "testsRegistered": 3,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "861c029d-c0b7-4ba1-934e-ca0367b3c3ec",
+      "title": "",
+      "fullFile": "",
+      "file": "",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "3125e637-9aaf-4fce-a982-a8d2d45b05aa",
+          "title": "Login",
+          "fullFile": "C:\\Users\\Pichau\\Cursos\\Projetos\\banco-api-tests\\test\\login.test.js",
+          "file": "\\test\\login.test.js",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [],
+          "suites": [
+            {
+              "uuid": "8d045414-72bd-41a6-add8-1dd43d2946b3",
+              "title": "POST /login",
+              "fullFile": "C:\\Users\\Pichau\\Cursos\\Projetos\\banco-api-tests\\test\\login.test.js",
+              "file": "\\test\\login.test.js",
+              "beforeHooks": [],
+              "afterHooks": [],
+              "tests": [
+                {
+                  "title": "Deve retornar 200 com um token em string quando usar credencias válidas",
+                  "fullTitle": "Login POST /login Deve retornar 200 com um token em string quando usar credencias válidas",
+                  "timedOut": false,
+                  "duration": 20,
+                  "state": "passed",
+                  "speed": "fast",
+                  "pass": true,
+                  "fail": false,
+                  "pending": false,
+                  "context": null,
+                  "code": "const resposta = await request ('http://localhost:3000')\n.post('/login')\n.set('Content-Type', 'application/json')\n.send(\n    {\n  'username': 'julio.lima',\n  'senha': '123456'\n    })\n        expect (resposta.status).to.equal(200);\n        expect (resposta.body.token).to.be.a('string');",
+                  "err": {},
+                  "uuid": "46c9eb87-b2e1-48d3-b8f9-ba3f779d622c",
+                  "parentUUID": "8d045414-72bd-41a6-add8-1dd43d2946b3",
+                  "isHook": false,
+                  "skipped": false
+                }
+              ],
+              "suites": [],
+              "passes": [
+                "46c9eb87-b2e1-48d3-b8f9-ba3f779d622c"
+              ],
+              "failures": [],
+              "pending": [],
+              "skipped": [],
+              "duration": 20,
+              "root": false,
+              "rootEmpty": false,
+              "_timeout": 20000
+            }
+          ],
+          "passes": [],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 0,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 20000
+        },
+        {
+          "uuid": "e34f6390-85cb-47e9-9dbf-a20f78d446a0",
+          "title": "Transferências",
+          "fullFile": "C:\\Users\\Pichau\\Cursos\\Projetos\\banco-api-tests\\test\\transferencia.test.js",
+          "file": "\\test\\transferencia.test.js",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [],
+          "suites": [
+            {
+              "uuid": "02105e29-e134-49c8-9c18-a2ee668afc30",
+              "title": "POS/tranferencias",
+              "fullFile": "C:\\Users\\Pichau\\Cursos\\Projetos\\banco-api-tests\\test\\transferencia.test.js",
+              "file": "\\test\\transferencia.test.js",
+              "beforeHooks": [],
+              "afterHooks": [],
+              "tests": [
+                {
+                  "title": "Deve retornar sucesso com 201 quando o valor for igual ou acima de R$10,00",
+                  "fullTitle": "Transferências POS/tranferencias Deve retornar sucesso com 201 quando o valor for igual ou acima de R$10,00",
+                  "timedOut": false,
+                  "duration": 18,
+                  "state": "passed",
+                  "speed": "fast",
+                  "pass": true,
+                  "fail": false,
+                  "pending": false,
+                  "context": null,
+                  "code": "//Capturar o token\n                const respostaLogin = await request ('http://localhost:3000')\n                       .post('/login')\n                       .set('Content-Type', 'application/json')\n                       .send({\n                       'username': 'julio.lima',\n                       'senha': '123456'\n                       })\n               const token = respostaLogin.body.token\n               const resposta = await request('http://localhost:3000')\n                   .post('/transferencias')\n                   .set('Content-Type', 'application/json')\n                   .set('Authorization',`Bearer ${token}` )\n                   .send({\n                        contaOrigem: 1,\n                        contaDestino: 2,\n                        valor: 10,\n                        token: \"\"\n                   })\n                   expect(resposta.status).to.equal(201);",
+                  "err": {},
+                  "uuid": "bd9dc07d-1157-4975-a535-d046856e3f9a",
+                  "parentUUID": "02105e29-e134-49c8-9c18-a2ee668afc30",
+                  "isHook": false,
+                  "skipped": false
+                },
+                {
+                  "title": "Deve retornar falha com 422 quando o valor for baixo de R$10,00",
+                  "fullTitle": "Transferências POS/tranferencias Deve retornar falha com 422 quando o valor for baixo de R$10,00",
+                  "timedOut": false,
+                  "duration": 6,
+                  "state": "passed",
+                  "speed": "fast",
+                  "pass": true,
+                  "fail": false,
+                  "pending": false,
+                  "context": null,
+                  "code": "//Capturar o token\nconst respostaLogin = await request ('http://localhost:3000')\n       .post('/login')\n       .set('Content-Type', 'application/json')\n       .send({\n       'username': 'julio.lima',\n       'senha': '123456'\n       })\n\n                const token = respostaLogin.body.token\n                const resposta = await request('http://localhost:3000')\n   .post('/transferencias')\n   .set('Content-Type', 'application/json')\n   .set('Authorization',`Bearer ${token}` )\n   .send({\n        contaOrigem: 1,\n        contaDestino: 2,\n        valor: 9.99,\n        token: \"\"\n   })\n   expect(resposta.status).to.equal(422);",
+                  "err": {},
+                  "uuid": "74b82569-f599-4410-9f28-9e869cbe0b57",
+                  "parentUUID": "02105e29-e134-49c8-9c18-a2ee668afc30",
+                  "isHook": false,
+                  "skipped": false
+                }
+              ],
+              "suites": [],
+              "passes": [
+                "bd9dc07d-1157-4975-a535-d046856e3f9a",
+                "74b82569-f599-4410-9f28-9e869cbe0b57"
+              ],
+              "failures": [],
+              "pending": [],
+              "skipped": [],
+              "duration": 24,
+              "root": false,
+              "rootEmpty": false,
+              "_timeout": 20000
+            }
+          ],
+          "passes": [],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 0,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 20000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 20000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "11.7.6"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.4"
+    },
+    "marge": {
+      "options": null,
+      "version": "6.3.2"
+    }
+  }
+}
